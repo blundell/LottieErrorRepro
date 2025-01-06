@@ -28,6 +28,20 @@ class MainActivity : ComponentActivity() {
                         name = "Android",
                         modifier = Modifier.padding(innerPadding)
                     )
+
+                    // you need the appcompat dependency for this to work
+                    // Cannot access 'androidx. appcompat. widget. AppCompatImageView' which is a supertype of 'com. airbnb. lottie. LottieAnimationView'.
+                    // Check your module classpath for missing or conflicting dependencies
+                    AndroidView(
+                        factory = { c ->
+                            LottieAnimationView(c).apply {
+                                setAnimationFromUrl("https://drive.google.com/uc?id=1ebWqd_e2ci4kSKB83e37q2Bl0YMadwxv")
+                                addLottieOnCompositionLoadedListener {
+                                    Log.d("TUT", "Keypaths: ${resolveKeyPath(KeyPath("**"))}")
+                                }
+                            }
+                        }
+                    )
                 }
             }
         }
